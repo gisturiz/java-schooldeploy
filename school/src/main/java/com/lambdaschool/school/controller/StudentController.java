@@ -52,13 +52,13 @@ public class StudentController
             @ApiResponse(code = 201, message = "Student Found", response = Student.class),
             @ApiResponse(code = 404, message = "Student not found", response = ErrorDetail.class)
     })
-    @GetMapping(value = "/s tudent/{StudentId}",
+    @GetMapping(value = "/student/{studentid}",
                 produces = {"application/json"})
     public ResponseEntity<?> getStudentById(
             @PathVariable
-                    Long StudentId)
+                    Long studentid)
     {
-        Student r = studentService.findStudentById(StudentId);
+        Student r = studentService.findStudentById(studentid);
         return new ResponseEntity<>(r, HttpStatus.OK);
     }
 
@@ -87,7 +87,7 @@ public class StudentController
             @ApiResponse(code = 201, message = "New student added", response = Student.class),
             @ApiResponse(code = 404, message = "New student not added", response = ErrorDetail.class)
     })
-    @PostMapping(value = "/Student",
+    @PostMapping(value = "/student",
                  consumes = {"application/json"},
                  produces = {"application/json"})
     public ResponseEntity<?> addNewStudent(@Valid
@@ -110,14 +110,14 @@ public class StudentController
             @ApiResponse(code = 201, message = "Student updated", response = Student.class),
             @ApiResponse(code = 404, message = "Student not found", response = ErrorDetail.class)
     })
-    @PutMapping(value = "/Student/{Studentid}")
+    @PutMapping(value = "/student/{studentid}")
     public ResponseEntity<?> updateStudent(
             @RequestBody
                     Student updateStudent,
             @PathVariable
-                    long Studentid)
+                    long studentid)
     {
-        studentService.update(updateStudent, Studentid);
+        studentService.update(updateStudent, studentid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -127,12 +127,12 @@ public class StudentController
             @ApiResponse(code = 201, message = "Student was deleled", response = Student.class),
             @ApiResponse(code = 404, message = "Student was not found", response = ErrorDetail.class)
     })
-    @DeleteMapping("/Student/{Studentid}")
+    @DeleteMapping("/student/{studentid}")
     public ResponseEntity<?> deleteStudentById(
             @PathVariable
-                    long Studentid)
+                    long studentid)
     {
-        studentService.delete(Studentid);
+        studentService.delete(studentid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
